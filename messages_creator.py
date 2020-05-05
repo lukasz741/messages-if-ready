@@ -61,7 +61,21 @@ for i in clients_from_csv:
     with open(name_rep, 'w') as f:
         f.write(message(i.name, i.surname, i.isReady))
 
-
+os.chdir("D:\PYTHON_NAUKA\project_auto_messages_for_clients")
+with open("clients.csv", 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        with open("clientscopy.csv", 'w', newline='') as csv_write:
+            csv_writer = csv.writer(csv_write)
+            for line in csv_reader:
+                if line == ["imie", "nazwisko", "gotowe"]:
+                    line.append('sent')
+                    csv_writer.writerow(line)
+                elif line[2] == "ready":
+                    line.append('yes')
+                    csv_writer.writerow(line)
+                else:
+                    line.append('no')
+                    csv_writer.writerow(line)
 
 
 
